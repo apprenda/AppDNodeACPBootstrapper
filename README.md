@@ -2,8 +2,9 @@
 
 As explained in https://github.com/apprenda/AppDynamicsIntegration, Apprenda supports the enhancing of applications running on Apprenda’s private platform as a service (PaaS) with AppDynamics monitoring. The integration is made possible by the advanced extensibility that Apprenda offers through bootstrap policies. This repository contains both the code and the binaries necessary to upload a new bootstrap policy in Apprenda and light up APM monitoring for Node.js applications.
 
-h3>Release Notes</h3>
-- Version 1.0
+<h3>Release Notes</h3>
+
++ Version 1.0
 
 <h3>Features</h3>
 With AppDynamics monitoring Apprenda applications, developers can:
@@ -37,13 +38,16 @@ To get a better understanding of this integration through a step-by-step video t
 - https://www.youtube.com/watch?v=kKTsi5qsWSs
 
 <h2>Contents</h2>
+
 - AppDNodeBootstrapper contains the source code for the bootstrap policy in Apprenda
 - Deployment contains a zip file that can be immediately uploaded to Apprenda as a bootstrap policy
 
 <h2>Installation Steps</h2>
+
 - Read the AppDynamicsInstallationGuideForApprenda.docx from https://github.com/apprenda/AppDynamicsIntegration
 - Set up AppDynamics in the environment, installing an agent on every node to be monitored
 - Create the following Custom Properties in Apprenda, allowing custom values to be entered by developers: APMEnable, AppdController, AppdAccount, AppdKey, AppdAppName, and AppdAppTier
 - Create a new bootstrap policy in Apprenda, targeting Linux workloads, using the Deployment\AppDBootstrapper.zip file
 - When you deploy a new Node.js application in Apprenda, make sure to fill out the custom properties defined above with the right set of details
 - Visit the AppDynamics portal to view performance metrics for your application
+
