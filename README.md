@@ -8,6 +8,7 @@ As explained in https://github.com/apprenda/AppDynamicsIntegration, Apprenda sup
 
 <h3>Features</h3>
 With AppDynamics monitoring Apprenda applications, developers can:
+
 - Monitor multi-instance distributed applications in real time
 - Monitor how the application is interacting with the database and gain access to query latencies
 - Monitor performance metrics and the overall health of an application
