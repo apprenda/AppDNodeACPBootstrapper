@@ -46,11 +46,14 @@ To get a better understanding of this integration through a step-by-step video t
 <h2>Installation Steps</h2>
 
 - Read the AppDynamicsInstallationGuideForApprenda.docx from https://github.com/apprenda/AppDynamicsIntegration
+- Set up Apprenda, integrating it with Kubernetes as per http://docs.apprenda.com/7-0/kubernetes
 - Set up AppDynamics in the environment, installing an agent on every node to be monitored
 - Create the following Custom Properties in Apprenda, targeting applications, allowing custom values to be entered by developers: AppdController, AppdAccount, AppdKey, AppdAppName, and AppdAppTier
 - Create the following Custom Property in Apprenda, APMEnable, targeting applications. There should only be two possible values: Yes and No. Developers can pick Yes to bootstrap APM monitoring and No if they don't APM monitoring
-- Create a new bootstrap policy in Apprenda, using the Deployment\AppDBootstrapper.zip file. The bootstrap policy should only execute when the condition of custom property APMEnable is set to Yes
+- Create a new bootstrap policy in Apprenda, targeting Kubernetes Components, using the Deployment\AppDBootstrapper.zip file. The bootstrap policy should only execute when the condition of custom property APMEnable is set to Yes
 - Node.js Application requirements
+  - Your Node.js application needs to be deployed on Kubernetes
+  - Your Node.js application needs to have a YAML file as the POD specification
   - Make sure you insert the snippet in Appendix A inside your node.js
   - When you deploy a new Node.js application in Apprenda, make sure to fill out the custom properties defined above with the right set of details for the AppDynamics environment
 - Visit the AppDynamics portal to view performance metrics for your application
