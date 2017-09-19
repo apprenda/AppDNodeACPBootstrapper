@@ -47,8 +47,29 @@ To get a better understanding of this integration through a step-by-step video t
 
 - Read the AppDynamicsInstallationGuideForApprenda.docx from https://github.com/apprenda/AppDynamicsIntegration
 - Set up AppDynamics in the environment, installing an agent on every node to be monitored
-- Create the following Custom Properties in Apprenda, allowing custom values to be entered by developers: APMEnable, AppdController, AppdAccount, AppdKey, AppdAppName, and AppdAppTier
-- Create a new bootstrap policy in Apprenda, targeting Linux workloads, using the Deployment\AppDBootstrapper.zip file
-- When you deploy a new Node.js application in Apprenda, make sure to fill out the custom properties defined above with the right set of details
+- Create the following Custom Properties in Apprenda, targeting applications, allowing custom values to be entered by developers: AppdController, AppdAccount, AppdKey, AppdAppName, and AppdAppTier
+- Create the following Custom Property in Apprenda, APMEnable, targeting applications. There should only be two possible values: Yes and No. Developers can pick Yes to bootstrap APM monitoring and No if they don't APM monitoring
+- Create a new bootstrap policy in Apprenda, using the Deployment\AppDBootstrapper.zip file. The bootstrap policy should only execute when the condition of custom property APMEnable is set to Yes
+- Node.js Application requirements
+  - Make sure you insert the snippet in Appendix A inside your node.js
+  - When you deploy a new Node.js application in Apprenda, make sure to fill out the custom properties defined above with the right set of details for the AppDynamics environment
 - Visit the AppDynamics portal to view performance metrics for your application
 
+
+<h2>Apprendix A</h2>
+
+> Insert this code inside your Node.js application to be monitored by AppDynamics. Apprenda and the bootstrap policy defined above will populate those environment variables, feeding the proper values to your application. The AppDynamics module inside your Node.js application will take this data and push the APM data to the appropriate AppDynamics server.
+
+```
+var appDobj = {
+	 controllerHostName: process.env['APPD_URL'],
+	 controllerPort: 443, 
+	 controllerSslEnabled: true,
+	 accountName: process.env['APPD_ACCOUNT'],
+	 accountAccessKey: process.env['APPD_KEY'],
+	 applicationName: process.env['APPD_APP_NAME'],
+	 tierName: process.env['APPD_APP_TIER'],
+	 nodeName: 'process'
+}
+require("appdynamics").profile(appDobj);
+```
